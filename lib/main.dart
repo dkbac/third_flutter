@@ -70,18 +70,23 @@ class RandomWordsState extends State<RandomWords> {
   }
 
   Widget _buildSuggestion() {
-    return ListView.builder(
-      itemBuilder: (context, i) {
-        if (i.isOdd) return Divider();
-        print(i);
+    return SafeArea(
+      child: ListView.builder(
+        itemBuilder: (context, i) {
+          if (i.isOdd) return Divider();
+          print(i);
 
-        final index = i ~/ 2;
-        if (index >= _suggestionWords.length) {
-          _suggestionWords.addAll(generateWordPairs().take(10));
-          //final someWords = generateWordPairs().take(10);
-        }
-        return _buildRow(_suggestionWords[index]);
-      },
+          final index = i ~/ 2;
+          if (index >= _suggestionWords.length) {
+            _suggestionWords.addAll(generateWordPairs().take(10));
+            //final someWords = generateWordPairs().take(10);
+          }
+          return _buildRow(_suggestionWords[index]);
+        },
+        itemCount: _suggestionWords.length,
+      ),
+      bottom: true,
+      top: true,
     );
   }
 
@@ -92,10 +97,29 @@ class RandomWordsState extends State<RandomWords> {
         pair.asPascalCase,
         style: _biggerFont,
       ),
+      leading: Icon(
+        Icons.account_circle
+      ),
+      subtitle: Text(
+        pair.asLowerCase
+      ),
+      isThreeLine: true,
+      enabled: true,
+      selected: false,
       trailing: Icon(
         alreadySaved ? Icons.favorite : Icons.favorite_border,
         color: alreadySaved ? Colors.red : null,
       ),
+      onLongPress: () {
+        setState(() {
+          if (alreadySaved) {
+            _saved.remove(pair);
+          }
+          else {
+            _saved.add(pair);
+          }
+        });
+      },
       onTap: () {
         setState(() {
           if (alreadySaved) {

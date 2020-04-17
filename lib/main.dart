@@ -60,9 +60,64 @@ class RandomWordsState extends State<RandomWords> {
             appBar: AppBar(
               title: Text('Favorite Words'),
             ),
-            body: ListView(
-              children: divided,
-            ),    
+            body: Wrap(
+              direction: Axis.horizontal,
+              spacing: 10,
+              runSpacing: 30,
+              children: [
+                AnimatedContainer(
+                  duration: Duration(seconds: 1),
+                  color: Colors.orange,
+                  child: FlutterLogo(
+                    size: 60,
+                  ),
+                ),
+                Container(
+                  color: Colors.orange,
+                  child: FlutterLogo(
+                    size: 60,
+                  ),
+                ),
+                Container(
+                  color: Colors.orange,
+                  child: FlutterLogo(
+                    size: 60,
+                  ),
+                ),
+                Container(
+                  color: Colors.orange,
+                  child: FlutterLogo(
+                    size: 60,
+                  ),
+                ),
+                Container(
+                  color: Colors.orange,
+                  child: FlutterLogo(
+                    size: 60,
+                  ),
+                ),
+                Container(
+                  color: Colors.orange,
+                  child: FlutterLogo(
+                    size: 60,
+                  ),
+                ),
+                /*
+                Expanded(
+                  child: Container(
+                    color: Colors.red,
+                    height: 60,
+                  ),
+                ),
+                */
+                Container(
+                  color: Colors.orange,
+                  child: FlutterLogo(
+                    size: 60,
+                  ),
+                )
+              ],
+            )
           );
         }
       )
@@ -83,7 +138,6 @@ class RandomWordsState extends State<RandomWords> {
           }
           return _buildRow(_suggestionWords[index]);
         },
-        itemCount: _suggestionWords.length,
       ),
       bottom: true,
       top: true,
